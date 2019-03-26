@@ -26,6 +26,13 @@
 			},
 			"description": "Return to yPos stored in storage"
 		},
+		"test_tab": {
+			"suggested_key": {
+				"default": "Ctrl+Shift+T",
+				"mac": "MacCtrl+Shift+T"
+			},
+			"description": "Testing tabs"
+		},
 		"_execute_browser_action": {
 			"suggested_key": {
 				"default": "Ctrl+Shift+P",
