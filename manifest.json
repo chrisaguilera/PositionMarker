@@ -1,0 +1,37 @@
+{
+	"name": "Position Tracker",
+	"version": "1.0",
+	"description": "Manually record a vertical position on page to return to later.",
+	"manifest_version": 2,
+	"permissions": ["activeTab", "declarativeContent", "storage"],
+	"background": {
+		"scripts": ["background.js"],
+		"persistent": false
+	},
+	"browser_action": {
+		"default_popup": "popup.html"
+	},
+	"commands": {
+		"save_yPos": {
+			"suggested_key": {
+				"default": "Ctrl+Shift+Y",
+				"mac": "MacCtrl+Shift+Y"
+			},
+			"description": "Save current yPos in storage"
+		},
+		"return_yPos": {
+			"suggested_key": {
+				"default": "Ctrl+Shift+R",
+				"mac": "MacCtrl+Shift+R"
+			},
+			"description": "Return to yPos stored in storage"
+		},
+		"_execute_browser_action": {
+			"suggested_key": {
+				"default": "Ctrl+Shift+P",
+				"mac": "MacCtrl+Shift+P"
+			},
+			"description": "Opens popup.html"
+		}
+	}
+}
