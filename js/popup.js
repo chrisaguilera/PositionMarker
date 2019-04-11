@@ -16,6 +16,7 @@ function getTimeElapsedString(timeElapsed) {
 
 var pinButton = document.getElementById("pin-button");
 var returnButton = document.getElementById("return-button");
+var clearButton = document.getElementById("clear-button");
 
 pinButton.onclick = function() {
 	chrome.tabs.query({active: true, currentWindow: true}, function(tabs) {
@@ -26,6 +27,7 @@ pinButton.onclick = function() {
 		var timeBadge = document.getElementById("time-badge");
 		timeBadge.textContent = "0s";
 		timeBadge.classList.add("badge-success");
+		timeBadge.classList.remove("badge-secondary");
 	});
 };
 
@@ -37,6 +39,16 @@ returnButton.onclick = function() {
 				tabs[0].id,
 				{code: 'window.scrollTo(0, ' + String(result[Object.keys(result)[0]].pos) + ');'});
 		});
+	});
+};
+
+clearButton.onclick = function() {
+	chrome.tabs.query({active: true, currentWindow: true}, function(tabs) {
+		chrome.storage.sync.remove(String(tabs[0].url));
+		var timeBadge = document.getElementById("time-badge");
+		timeBadge.textContent = "None";
+		timeBadge.classList.add("badge-secondary");
+		timeBadge.classList.remove("badge-success");
 	});
 };
 
