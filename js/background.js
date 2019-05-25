@@ -29,12 +29,13 @@ chrome.runtime.onMessage.addListener(function(request, sender, sendResponse){
 	if (sender.tab) {
 		if (request.messageType == "Position") {
 			var currentTabUrl = sender.tab.url;
+			var currentTabTitle = sender.tab.title;
 			// Date
 			var now = Date.now();
 			// Pos
 			var pos = request.pos;
 			var obj = {};
-			obj[currentTabUrl] = {pos: pos, date: now};
+			obj[currentTabUrl] = {pos: pos, date: now, title: currentTabTitle};
 			chrome.storage.sync.set(obj);
 		}
 	}

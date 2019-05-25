@@ -56,8 +56,9 @@ clearButton.onclick = function() {
 chrome.tabs.query({active: true, currentWindow: true}, function(tabs) {
 	chrome.storage.sync.get(String(tabs[0].url), function(result) {
 		var currentTabUrl = tabs[0].url;
+		var currentTabTitle = tabs[0].title;
 		if (typeof result[Object.keys(result)[0]] == 'undefined') {
-			var content =	'<div id="url" class="col" style="word-wrap: break-word;">' + currentTabUrl + 
+			var content =	'<div id="url" class="col" style="word-wrap: break-word;">' + currentTabTitle + 
 								' <span class="badge badge-secondary" id="time-badge">None</span>' + 
 							"</div>";
 			$("#url-container").html( content );
@@ -65,7 +66,7 @@ chrome.tabs.query({active: true, currentWindow: true}, function(tabs) {
 			var timeElapsed = Date.now() - result[Object.keys(result)[0]].date;
 			timeElapsed = timeElapsed/1000;
 
-			var content =	'<div id="url" class="col" style="word-wrap: break-word;">' + currentTabUrl + 
+			var content =	'<div id="url" class="col" style="word-wrap: break-word;">' + currentTabTitle + 
 								' <span class="badge badge-success" id="time-badge">' + getTimeElapsedString(timeElapsed) + '</span>' + 
 							"</div>";
 			$("#url-container").html( content );
